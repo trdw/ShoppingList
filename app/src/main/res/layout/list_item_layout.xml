@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/listItemName"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <CheckBox
+        android:id="@+id/listCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/list_item_name"
-        />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:checked="false" />
+    <TextView
+        android:id="@+id/listTitleTextView"
+        style="@style/list_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_orange_light" />
+</LinearLayout>

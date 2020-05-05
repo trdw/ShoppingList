@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditListActivity">
+
+    <EditText
+        android:id="@+id/edit_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/big_padding"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/hint_title"
+        android:inputType="textAutoComplete"
+        android:minHeight="@dimen/min_height"
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/totalText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/big_padding"
+        app:layout_constraintTop_toBottomOf="@+id/edit_title"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/total_text"
+        android:minHeight="@dimen/min_height"
+        android:textSize="18sp"
+
+        />
+    <TextView
+        android:id="@+id/totalAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/big_padding"
+        app:layout_constraintTop_toBottomOf="@+id/edit_title"
+        app:layout_constraintStart_toEndOf="@+id/totalText"
+        android:text="@string/total_zero"
+        android:minHeight="@dimen/min_height"
+        android:textSize="18sp"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerviewItems"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        tools:listitem="@layout/item_item_layout"
+        android:padding="@dimen/big_padding"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalAmount" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/big_padding"
+        android:background="@color/colorPrimary"
+        android:text="@string/button_save"
+        android:textColor="@color/buttonLabel"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_save_black_24dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
