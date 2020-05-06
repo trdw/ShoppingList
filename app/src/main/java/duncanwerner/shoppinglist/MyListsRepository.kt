@@ -1,7 +1,6 @@
 package duncanwerner.shoppinglist
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 
 class MyListsRepository (private val myListDAO: MyListDAO) {
     val allLists: LiveData<List<MyList>> = myListDAO.getAllLists()
