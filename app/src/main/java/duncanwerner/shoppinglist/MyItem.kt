@@ -17,5 +17,8 @@ class MyItem(val listID: Int,
         this.id = id
     }
 
+    constructor(id: Int, listID: Int, title: String, quantity: Int, price: Float) : this(listID, title, quantity, price) {
+        this.id = id
+    }
     var isChecked: Boolean = false
 }

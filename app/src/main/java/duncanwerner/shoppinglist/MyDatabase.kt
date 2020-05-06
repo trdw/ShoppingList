@@ -8,10 +8,9 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = [MyList::class], version = 1, exportSchema = false)
+@Database(entities = [MyList::class, MyItem::class], version = 1, exportSchema = false)
 public abstract class MyDatabase: RoomDatabase() {
     abstract fun myListDAO(): MyListDAO
-//    abstract fun itemsDAO(): ItemsDAO
     companion object {
         @Volatile
         private var INSTANCE: MyDatabase ?= null
@@ -45,11 +44,7 @@ public abstract class MyDatabase: RoomDatabase() {
         }
 
         suspend fun populateDatabase(myListDAO: MyListDAO) {
-            //myListDAO.deleteAll()
-            var myList = MyList("list1")
-            myListDAO.insert(myList)
-            myList = MyList( "list2")
-            myListDAO.insert(myList)
+//            myListDAO.deleteAll()
         }
     }
 }

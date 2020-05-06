@@ -9,11 +9,15 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class MyListAdapter internal constructor(
-    context: Context
+    private val context: Context, val itemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<MyListAdapter.MyListViewHolder>() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var myLists = emptyList<MyList>() // Cached copy of lists
+
+    interface OnItemClickListener {
+        fun onItemClicked(myList: MyList)
+    }
 
     inner class MyListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val listItemView: TextView = itemView.findViewById(R.id.listTitleTextView)
@@ -27,6 +31,9 @@ class MyListAdapter internal constructor(
 
     override fun onBindViewHolder(holder: MyListViewHolder, position: Int) {
         val current = myLists[position]
+        holder.listItemView.setOnClickListener {
+            itemClickListener.onItemClicked(current)
+        }
         holder.listItemView.text = current.title
         holder.listCheckbox.isChecked = current.isChecked
         holder.listCheckbox.setOnClickListener {
