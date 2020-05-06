@@ -26,22 +26,10 @@ class MainActivity : AppCompatActivity() {
         listModel = ViewModelProvider(this).get(MyListModel::class.java)
         val listFragment = ListFragment()
 
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.fragment_container, listFragment, "TAG")
-        transaction.commit()
-
+        if (supportFragmentManager.backStackEntryCount < 1) {
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.add(R.id.fragment_container, listFragment, "TAG")
+            transaction.commit()
+        }
     }
-
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//
-//        if (requestCode == newMyListActivityRequestCode && resultCode == Activity.RESULT_OK) {
-//            data?.getStringExtra(EditListActivity.EXTRA_REPLY)?.let {
-//                val myList = MyList(it)
-//                listModel.insert(myList)
-//            }
-//        } else {
-//            Toast.makeText(applicationContext, R.string.list_save_error, Toast.LENGTH_LONG).show()
-//        }
-//    }
 }

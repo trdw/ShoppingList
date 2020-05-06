@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -32,8 +33,6 @@ class MyListModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun insert(myItem: MyItem) {
-        val newTotal = total.value!! + myItem.quantity * myItem.price
-        total.postValue(newTotal)
         viewModelScope.launch(Dispatchers.IO) {
             repository.insert(myItem)
         }
@@ -46,8 +45,6 @@ class MyListModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun deleteItem(myItem: MyItem) {
-        val newTotal = total.value!! - myItem.quantity * myItem.price
-        total.postValue(newTotal)
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteItem(myItem)
         }
@@ -62,13 +59,12 @@ class MyListModel(application: Application) : AndroidViewModel(application) {
     fun loadItems(myList: MyList) {
         repository.loadItemsByList(myList)
         itemsList = repository.itemsList
+        updateTotal()
     }
 
     fun getItemsList() = itemsList
 
-    fun updateItem(myItem: MyItem, newItem: MyItem) {
-        val newTotal = total.value!! - myItem.quantity * myItem.price + newItem.quantity * newItem.price
-        total.postValue(newTotal)
+    fun updateItem(newItem: MyItem) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.updateItem(newItem)
         }

@@ -46,7 +46,7 @@ class ItemFragment : Fragment(), MyItemAdapter.OnItemClickListener, MyItemAdapte
                             newItemQuantity,
                             newItemPrice
                         )
-                        listModel.updateItem(myItem, newItem)
+                        listModel.updateItem(newItem)
                         val toast = Toast.makeText(context, "Item updated!", Toast.LENGTH_LONG)
                         toast.show()
                     } else {
@@ -73,7 +73,7 @@ class ItemFragment : Fragment(), MyItemAdapter.OnItemClickListener, MyItemAdapte
     }
 
     override fun onItemCheckboxClicked(myItem: MyItem) {
-        listModel.updateItem(myItem, myItem)
+        listModel.updateItem(myItem)
     }
 
     override fun onCreateView(
@@ -101,9 +101,11 @@ class ItemFragment : Fragment(), MyItemAdapter.OnItemClickListener, MyItemAdapte
             it?.let {view.findViewById<TextView>(R.id.listTotal).text = "Total: $it"}
         })
         listModel.getItemsList().observe(this.activity!!, Observer {itemList ->
-            itemList?.let {adapter.setMyItems(it)}
+            itemList?.let {
+                adapter.setMyItems(it)
+                listModel.updateTotal()
+            }
         })
-
         val fabAddItem = view.findViewById<FloatingActionButton>(R.id.fabAddItem)
         fabAddItem.setOnClickListener {
             activity?.let {

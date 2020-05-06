@@ -11,11 +11,13 @@
         android:id="@+id/itemQuantityEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hint_item_quantity"/>
+        android:hint="@string/hint_item_quantity"
+        android:inputType="number"/>
     <EditText
         android:id="@+id/itemPriceEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hint_item_price"/>
+        android:hint="@string/hint_item_price"
+        android:inputType="numberDecimal"/>
 
 </LinearLayout>
